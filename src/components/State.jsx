@@ -16,11 +16,15 @@ export default function State(){
     const handleChangeCountry = (event) => {
         setCountry(event.target.value);
         setCountryStatus(true)
+        setState('');
+        setCity('');
+        setStateStatus(false);
       };
 
       const handleChangeState = (event) => {
         setState(event.target.value);
         setStateStatus(true)
+        setCity('');
       };
 
       const handleChangeCity = (event) => {
@@ -85,28 +89,22 @@ export default function State(){
         </select>
 
 
-        {isCountrySet?(
-        <>
-        <select id="StateSelector" value={state} onChange={handleChangeState}>
+        
+        <select id="StateSelector" value={state} disabled={!isCountrySet} onChange={handleChangeState}>
         <option value="default">Select State</option>
         {stateList.map((s)=>{
             return (<option key={s} value={s}>{s}</option>)
         })}        
         </select>
 
-        {isStateSet?
-            (<select id="CitySelector" value={city} onChange={handleChangeCity}>
+        
+        <select id="CitySelector" value={city} disabled={!isStateSet} onChange={handleChangeCity}>
                 <option value="default">Select City</option>
                 {cityList.map((i)=>{
                     return (<option key={i} value={i}>{i}</option>)
                 })}        
-                </select>)
-            :
-            null}
-            </>)
-        :
-        null
-        }    
+        </select>
+             
         </div>   
 
         {country && state && city && (
