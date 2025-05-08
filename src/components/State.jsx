@@ -109,7 +109,7 @@ export default function State(){
 
         {country && state && city && (
         <h3 style={{ marginTop: '20px' }}>
-          You selected {country}, {state}, {city}
+          You selected {city}, {state}, {country}
         </h3>
       )}     
 
